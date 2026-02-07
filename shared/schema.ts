@@ -24,7 +24,9 @@ export const attendance = pgTable("attendance", {
 
 // === BASE SCHEMAS ===
 export const insertEmployeeSchema = createInsertSchema(employees).omit({ id: true });
-export const insertAttendanceSchema = createInsertSchema(attendance).omit({ id: true });
+export const insertAttendanceSchema = createInsertSchema(attendance, {
+  date: z.coerce.date(),
+}).omit({ id: true });
 
 // === EXPLICIT API CONTRACT TYPES ===
 export type Employee = typeof employees.$inferSelect;

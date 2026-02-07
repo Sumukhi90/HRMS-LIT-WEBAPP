@@ -38,6 +38,14 @@ export async function registerRoutes(
     res.json(employee);
   });
 
+  app.delete(api.employees.delete.path, async (req, res) => {
+    const success = await storage.deleteEmployee(Number(req.params.id));
+    if (!success) {
+      return res.status(404).json({ message: 'Employee not found' });
+    }
+    res.json({ success: true });
+  });
+
   // Attendance API
   app.get(api.attendance.list.path, async (req, res) => {
     const records = await storage.getAttendanceRecords();

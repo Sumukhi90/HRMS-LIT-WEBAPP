@@ -40,6 +40,14 @@ export const api = {
         404: errorSchemas.notFound,
       },
     },
+    delete: {
+      method: 'DELETE' as const,
+      path: '/api/employees/:id' as const,
+      responses: {
+        200: z.object({ success: z.boolean() }),
+        404: errorSchemas.notFound,
+      },
+    },
   },
   attendance: {
     list: {
